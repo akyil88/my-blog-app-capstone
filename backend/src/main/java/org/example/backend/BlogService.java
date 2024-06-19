@@ -15,4 +15,23 @@ public class BlogService {
     public List<Blog> getAllBlogs() {
         return blogRepo.findAll();
     }
+
+    public Blog postBlog(Blog blog) {
+
+        Blog blogSaved = new Blog(blog.id(), blog.title(), blog.description());
+
+        return blogRepo.save(blogSaved);
+    }
+
+
+    public Blog getBlogById(String id) {
+        return blogRepo.findById(id).orElse(null);
+    }
+
+
+
+
+
 }
+
+
