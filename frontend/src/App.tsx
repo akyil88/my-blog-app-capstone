@@ -1,27 +1,26 @@
 import {Blog} from "./Blog.ts";
 import BlogCard from "./BlogCard.tsx";
+import {useEffect, useState} from "react";
+import  axios from "axios";
 
 
 function App() {
+    const [blogs, setBlogs] = useState<Blog[]>()
 
-    const blogs: Blog [] = [
-        {
-            "id": "abc123",
-            "title": "Test1",
-            "description": "Kochen"
+    useEffect((): void => {
 
 
-        },
-
-        {
-            "id": "abc124",
-            "title": "Test2",
-            "description": "Putzen"
-
-        }
+            axios.get("/api/blog")
+                .then(response => {
+                    setBlogs(response.data)
+                })
+        }, []);
 
 
-    ]
+    if (!blogs) {
+        return "Lade..."
+
+    }
 
 
     return (
