@@ -7,7 +7,7 @@ type Props = {
 
 export default function BlogCard(props:Props) {
     return (
-        <div>
+        <div className="blog-card">
             {props.blog.description}
         </div>
     );
