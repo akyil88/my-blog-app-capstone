@@ -1,16 +1,19 @@
-
-import {Blog} from   "./Blog.ts"
+import { Blog } from "./Blog.ts";
+import React from "react";
 
 type Props = {
-    blog: Blog,
-}
+    blog: Blog;
+    onSave: () => void; // Callback-Funktion, um gespeicherte Blogs zu aktualisieren
+};
 
-export default function BlogCard(props:Props) {
+const BlogCard: React.FC<Props> = ({ blog }) => {
     return (
         <div className="blog-card">
-            {props.blog.description}
+            <h2>{blog.title}</h2>
+
+
         </div>
     );
-}
+};
 
-
+export default BlogCard;

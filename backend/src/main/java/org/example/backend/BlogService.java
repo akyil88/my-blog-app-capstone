@@ -3,8 +3,13 @@ package org.example.backend;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,9 +34,11 @@ public class BlogService {
     }
 
 
+    public Blog updateBlog(UpdateBlog blog, String id) {
+        Blog blogToUpdate = new Blog(id, blog.description(), blog.title());
 
-
-
+        return blogRepo.save(blogToUpdate);
+    }
 }
 
 
