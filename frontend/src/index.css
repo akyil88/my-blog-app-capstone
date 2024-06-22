@@ -10,8 +10,13 @@ body{
 
     border: solid 1px black;
     border-radius: 5px;
-    height: 50px;
-    width: 100px;
-    margin-bottom: 20px;
+    height:100px;
+    width: 250px;
+    margin-bottom: 10px;
     padding: 10px;
+    display: grid;
+}
+
+.blog-card button{
+    justify-self: flex-end;
 }
