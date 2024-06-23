@@ -1,9 +1,13 @@
-import { Blog } from "./Blog.ts";
-import BlogCard from "./BlogCard.tsx";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Blog } from "./Blog.ts";
+import BlogCard from "./BlogCard.tsx";
 
-const App: React.FC = () => {
+type Props = {
+    onBlogItemChange: () => void;
+};
+
+const App: React.FC<Props> = () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [text, setText] = useState("");
 
@@ -22,7 +26,7 @@ const App: React.FC = () => {
     }
 
     function saveBlog(): void {
-        setText("")
+        setText("");
         axios
             .post("/api/blog", {
                 description: text,
@@ -41,7 +45,7 @@ const App: React.FC = () => {
                 <BlogCard
                     key={blog.id}
                     blog={blog}
-                    onSave={fetchBlogs} // onSave aktualisiert die Liste der Blogs
+                    onBlogItemChange={fetchBlogs} // Übergebe die Prop onBlogItemChange
                 />
             ))}
 

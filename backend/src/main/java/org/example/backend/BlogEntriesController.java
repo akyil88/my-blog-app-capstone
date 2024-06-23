@@ -42,4 +42,9 @@ public class BlogEntriesController {
     public Blog putBlog(@RequestBody UpdateBlog blog, @PathVariable String id) {
         return blogService.updateBlog(blog, id);
     }
+
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable String id) {
+        blogService.delete(id);
+    }
 }

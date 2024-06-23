@@ -1,19 +1,23 @@
-import { Blog } from "./Blog.ts";
-import React from "react";
+import {Blog} from "./Blog.ts";
+import axios from "axios";
 
 type Props = {
-    blog: Blog;
-    onSave: () => void; // Callback-Funktion, um gespeicherte Blogs zu aktualisieren
+    blog: Blog,
+    onSave?: () => void
+    onBlogItemChange: () => void
 };
 
-const BlogCard: React.FC<Props> = ({ blog }) => {
+export default function BlogCard(props: Readonly<Props>) {
+
+    function deleteThisItem() {
+        axios.delete("/api/blog/" + props.blog.id)
+            .then(props.onBlogItemChange)
+    }
+
     return (
         <div className="blog-card">
-            <h2>{blog.title}</h2>
-
-
+            {props.blog.description}
+            <button onClick={deleteThisItem}>🗑️</button>
         </div>
     );
-};
-
-export default BlogCard;
+}

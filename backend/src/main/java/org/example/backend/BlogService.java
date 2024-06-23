@@ -39,6 +39,13 @@ public class BlogService {
 
         return blogRepo.save(blogToUpdate);
     }
+
+    public void delete(String id) {
+        // Delete a blog entry by its ID
+        blogRepo.deleteById(id);
+    }
+
+
 }
 
 
