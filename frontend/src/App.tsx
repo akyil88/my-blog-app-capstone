@@ -45,7 +45,7 @@ const App: React.FC<Props> = () => {
                 <BlogCard
                     key={blog.id}
                     blog={blog}
-                    onBlogItemChange={fetchBlogs} // Übergebe die Prop onBlogItemChange
+                    onBlogItemChange={fetchBlogs}
                 />
             ))}
 

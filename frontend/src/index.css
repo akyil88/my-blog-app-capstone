@@ -4,8 +4,6 @@ body{
 
 
 
-
-
 .blog-card {
 
     border: solid 1px black;
@@ -19,4 +17,8 @@ body{
 
 .blog-card button{
     justify-self: flex-end;
+    height: 30px;
+    width: 30px;
+    border: white;
+    font-size: 25px;
 }
