@@ -1,24 +1,49 @@
-body{
+body {
     font-family: sans-serif;
 }
 
-
-
 .blog-card {
-
     border: solid 1px black;
     border-radius: 5px;
-    height:100px;
     width: 250px;
     margin-bottom: 10px;
-    padding: 10px;
-    display: grid;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
 }
 
-.blog-card button{
-    justify-self: flex-end;
-    height: 30px;
-    width: 30px;
-    border: white;
-    font-size: 25px;
+.blog-card h3 {
+    margin: 0 0 10px 0;
+}
+
+.blog-card p {
+    margin: 0;
+}
+
+.blog-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card input {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.blog-card button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.blog-card .edit-button {
+    top: auto;
+    bottom: 40px;
+
 }

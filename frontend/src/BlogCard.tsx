@@ -1,6 +1,6 @@
-import {Blog} from "./Blog";
+import { Blog } from "./Blog";
 import axios from "axios";
-import React, {useState} from "react";
+import React, { FormEvent, useState } from "react";
 
 type BlogCardProps = {
     blog: Blog,
@@ -9,30 +9,27 @@ type BlogCardProps = {
 };
 
 export default function BlogCard(props: Readonly<BlogCardProps>) {
+    const [title, setTitle] = useState(props.blog.title);
     const [description, setDescription] = useState(props.blog.description);
     const [isEditing, setIsEditing] = useState(false);
 
-
     function deleteThisItem() {
         axios.delete("/api/blog/" + props.blog.id)
-            .then(props.onBlogItemChange)
+            .then(props.onBlogItemChange);
     }
 
-
-    function changeText(event: React.ChangeEvent<HTMLInputElement>): void{
-        const newDescription  = event.target.value
-        setDescription(newDescription);
-        axios.put("/api/blog/" + props.blog.id,{
-            ...props.blog,
-            description: newDescription
-
-        } as Blog)
-
+    function changeTitle(event: React.ChangeEvent<HTMLInputElement>): void {
+        setTitle(event.target.value);
     }
 
-    function saveDescription(): void {
+    function changeDescription(event: React.ChangeEvent<HTMLInputElement>): void {
+        setDescription(event.target.value);
+    }
+
+    function saveBlog(event: FormEvent<HTMLFormElement>): void {
+        event.preventDefault();
         axios.put(`/api/blog/${props.blog.id}`, {
-            ...props.blog,
+            title: title,
             description: description,
         })
             .then(response => {
@@ -50,15 +47,30 @@ export default function BlogCard(props: Readonly<BlogCardProps>) {
     return (
         <div className="blog-card">
             {isEditing ? (
-                <input value={description} onChange={changeText}/>
+                <form onSubmit={saveBlog}>
+                    <input
+                        type="text"
+                        value={title}
+                        onChange={changeTitle}
+                        placeholder="Title"
+                    />
+                    <input
+                        type="text"
+                        value={description}
+                        onChange={changeDescription}
+                        placeholder="Description"
+                    />
+                    <button type="submit">Submit</button>
+                </form>
             ) : (
-                <span>{description}</span>
+                <>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                </>
             )}
-            <button onClick={deleteThisItem}>☒</button>
-            {isEditing ? (
-                <button onClick={saveDescription}>☑︎</button>
-            ) : (
-                <button onClick={() => setIsEditing(true)}>✏️</button>
+            <button className="delete-button" onClick={deleteThisItem}>☒</button>
+            {!isEditing && (
+                <button className="edit-button" onClick={() => setIsEditing(true)}>✏️</button>
             )}
         </div>
     );
