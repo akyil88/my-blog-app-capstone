@@ -2,9 +2,9 @@ package org.example.backend;
 
 
 
-import org.springframework.http.HttpStatus;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+
 
 
 import java.util.List;
@@ -30,8 +30,8 @@ public class BlogEntriesController {
 
 
     @PostMapping
-    Blog postBlog(@RequestBody Blog blog) {
-        return blogService.postBlog(blog);
+    Blog postBlog(@RequestBody @Valid NewBlogDTO blog) {
+        return blogService.postBlog(new Blog(blog.description(), blog.title()));
     }
 
     @GetMapping("{id}")
