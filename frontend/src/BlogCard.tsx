@@ -12,22 +12,28 @@ export default function BlogCard(props: Readonly<BlogCardProps>) {
     const [description, setDescription] = useState(props.blog.description);
     const [isEditing, setIsEditing] = useState(false);
 
+
     function deleteThisItem() {
         axios.delete("/api/blog/" + props.blog.id)
             .then(props.onBlogItemChange)
-            .catch(error => {
-                console.error('There was an error deleting the blog!', error);
-            });
     }
 
-    function changeText(event: React.ChangeEvent<HTMLInputElement>): void {
-        setDescription(event.target.value);
+
+    function changeText(event: React.ChangeEvent<HTMLInputElement>): void{
+        const newDescription  = event.target.value
+        setDescription(newDescription);
+        axios.put("/api/blog/" + props.blog.id,{
+            ...props.blog,
+            description: newDescription
+
+        } as Blog)
+
     }
 
     function saveDescription(): void {
         axios.put(`/api/blog/${props.blog.id}`, {
             ...props.blog,
-            description: description
+            description: description,
         })
             .then(response => {
                 console.log('Blog updated successfully', response.data);
