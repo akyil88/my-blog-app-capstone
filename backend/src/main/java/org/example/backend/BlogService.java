@@ -28,7 +28,7 @@ public class BlogService {
     }
 
     public Blog updateBlog(UpdateBlog blog, String id) {
-        Blog blogToUpdate = new Blog(id, blog.description(), blog.title());
+        Blog blogToUpdate = new Blog(id, blog.getDescription(), blog.getTitle());
 
         return blogRepo.save(blogToUpdate);
     }
