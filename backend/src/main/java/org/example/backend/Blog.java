@@ -6,9 +6,7 @@ public record Blog(
         String description
 ) {
 
-    public Blog(String title, String description) {
-        this(null, title, description);
-    }
+
 
 
 }
