@@ -1,12 +1,6 @@
 package org.example.backend;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,22 +17,21 @@ class BlogServiceTest {
     @Test
     void testGetAllBlogs() {
         //GIVEN
-
         Blog blog1 = new Blog("1", "Title1", "Description1");
         Blog blog2 = new Blog("2", "Title2", "Description2");
         Blog blog3 = new Blog("3", "Title3", "Description3");
 
+        List<Blog> expectedBlogs = List.of(blog1, blog2, blog3);
 
-        List<Blog> expectedBlogs = Arrays.asList(blog1, blog2, blog3);
+        when(mockBlogRepo.findAll()).thenReturn(List.of(blog1, blog2, blog3));
 
-        when(mockBlogRepo.findAll()).thenReturn(Arrays.asList(blog1, blog2, blog3));
-        BlogService blogService = new BlogService(mockBlogRepo,uuidService);
-
+        //WHEN
         List<Blog> result = blogService.getAllBlogs();
 
+        //THEN
         assertEquals(expectedBlogs, result);
-
     }
+
     @Test
     void testPostBlog() {
         //GIVEN
@@ -109,6 +102,3 @@ class BlogServiceTest {
         verify(mockBlogRepo, times(1)).deleteById("1");
     }
 }
-
-
-
