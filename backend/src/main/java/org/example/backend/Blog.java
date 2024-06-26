@@ -1,8 +1,5 @@
 package org.example.backend;
 
-
-
-
 public record Blog(
         String id,
         String title,
@@ -14,6 +11,6 @@ public record Blog(
     }
 
     public Blog withId(String id) {
-        return new Blog(id, title, description);
+        return new Blog(id, this.title, this.description);
     }
 }
