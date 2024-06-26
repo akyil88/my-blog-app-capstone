@@ -1,7 +1,6 @@
 package org.example.backend;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+
 
 
 public record Blog(
