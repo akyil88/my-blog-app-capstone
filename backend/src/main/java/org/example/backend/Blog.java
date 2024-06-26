@@ -10,7 +10,5 @@ public record Blog(
         this(null, title, description);
     }
 
-    public Blog withId(String id) {
-        return new Blog(id, this.title, this.description);
-    }
+
 }
