@@ -31,7 +31,7 @@ public class BlogEntriesController {
 
     @PostMapping
     Blog postBlog(@RequestBody @Valid NewBlogDTO blog) {
-        return blogService.postBlog(new Blog(blog.description(), blog.title()));
+        return blogService.postBlog(new Blog(blog.description(), blog.title(), blog.description()));
     }
 
     @GetMapping("{id}")
