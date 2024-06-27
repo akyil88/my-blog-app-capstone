@@ -8,12 +8,12 @@ type BlogCardProps = {
     onBlogItemChange: () => void
 };
 
-export default function BlogCard(props: Readonly<BlogCardProps>) {
+const BlogCard: React.FC<BlogCardProps> = (props) => {
     const [title, setTitle] = useState(props.blog.title);
     const [description, setDescription] = useState(props.blog.description);
     const [isEditing, setIsEditing] = useState(false);
 
-    function deleteThisItem() {
+    function deleteThisItem(): void {
         axios.delete("/api/blog/" + props.blog.id)
             .then(props.onBlogItemChange);
     }
@@ -60,7 +60,7 @@ export default function BlogCard(props: Readonly<BlogCardProps>) {
                         onChange={changeDescription}
                         placeholder="Description"
                     />
-                    <button type="submit">Submit</button>
+                    <button type="submit">Save</button>
                 </form>
             ) : (
                 <>
@@ -68,10 +68,12 @@ export default function BlogCard(props: Readonly<BlogCardProps>) {
                     <p>{description}</p>
                 </>
             )}
-            <button className="delete-button" onClick={deleteThisItem}>☒</button>
+            <button className="delete-button" onClick={deleteThisItem}>Delete</button>
             {!isEditing && (
-                <button className="edit-button" onClick={() => setIsEditing(true)}>✏️</button>
+                <button className="edit-button" onClick={() => setIsEditing(true)}>Edit</button>
             )}
         </div>
     );
-}
+};
+
+export default BlogCard;
