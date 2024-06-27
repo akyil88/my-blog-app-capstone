@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Blog } from "./Blog.ts";
-import BlogCard from "./BlogCard.tsx";
+import { Blog } from "./Blog";
+import BlogCard from "./BlogCard";
 
 type Props = {
     onBlogItemChange: () => void;
@@ -49,8 +49,10 @@ const App: React.FC<Props> = () => {
                 />
             ))}
 
-            <input type="text" value={text} onChange={changeText} />
-            <button onClick={saveBlog}>Add Blog</button>
+            <div className="input-container">
+                <input type="text" value={text} onChange={changeText} />
+                <button onClick={saveBlog}>Add Blog</button>
+            </div>
         </div>
     );
 };
