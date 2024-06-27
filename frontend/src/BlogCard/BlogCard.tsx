@@ -1,6 +1,7 @@
-import { Blog } from "./Blog";
+import { Blog } from "./Blog.ts";
 import axios from "axios";
 import React, { FormEvent, useState } from "react";
+import './BlogCard.css';
 
 type BlogCardProps = {
     blog: Blog,

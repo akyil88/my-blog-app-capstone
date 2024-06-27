@@ -1,0 +1,110 @@
+/* index.css */
+
+/* Allgemeine Stile */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* App Container */
+.app {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Input Field and Button */
+input[type="text"] {
+    width: calc(100% - 100px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Blog Card */
+.blog-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card h3 {
+    margin-top: 0;
+}
+
+.blog-card p {
+    color: #666;
+}
+
+/* Edit and Delete Buttons */
+.delete-button, .edit-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #007BFF;
+    margin-left: 5px;
+}
+
+.delete-button:hover {
+    color: #FF0000;
+}
+
+.edit-button:hover {
+    color: #0056b3;
+}
+
+/* Form Styles in Blog Card */
+.blog-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card form input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.blog-card form button[type="submit"] {
+    padding: 10px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.blog-card form button[type="submit"]:hover {
+    background-color: #218838;
+}
