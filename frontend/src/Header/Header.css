@@ -1,0 +1,61 @@
+.nav_logo {
+    width: 3rem;
+    display: block;
+}
+
+img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+
+}
+
+
+body {
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+
+    list-style: none;
+}
+
+nav {
+    width: 100vw;
+    height: 6rem;
+    display: grid;
+    place-items: flex-start;
+    position: initial;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-bottom: 4px;
+    backdrop-filter: blur(20px);
+}
+
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 95%;
+
+}
+
+.nav_menu {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
