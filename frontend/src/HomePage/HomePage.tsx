@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Blog } from "../BlogCard/Blog.ts";
 import BlogCard from "../BlogCard/BlogCard.tsx";
-import Header from "../Header/Header.tsx"; // Annahme: Header-Komponente wurde bereits erstellt
+import Header from "../Header/Header.tsx";
 
-import CreateBlog from "../BlogCreate/BlogCreate.tsx"; // Annahme: Pfad zur CreateBlog-Komponente
 
 const Homepage: React.FC = () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -20,18 +19,18 @@ const Homepage: React.FC = () => {
     }
 
     function handleCreateBlog(): void {
-        // Hier könntest du zur CreateBlog-Seite navigieren oder die CreateBlog-Komponente anzeigen lassen
+
         console.log("Navigating to create blog page...");
     }
-
+// @ts-ignore
     function handleBlogSaved(): void {
-        fetchBlogs(); // Nach dem Speichern eines Blogs die Liste aktualisieren
+        fetchBlogs();
     }
 
     return (
         <div className="homepage">
             <Header onCreateBlog={handleCreateBlog} />
-            <CreateBlog onBlogSaved={handleBlogSaved} />
+
             <div className="blog-list">
                 {blogs.map((blog) => (
                     <BlogCard

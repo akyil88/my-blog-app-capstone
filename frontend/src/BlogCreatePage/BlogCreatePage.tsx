@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Blog } from '../BlogCard/Blog.ts';
+import Header from "../Header/Header.tsx";
 
 type Props = {
     onBlogSaved: () => void;
@@ -21,12 +22,13 @@ const CreateBlog: React.FC<Props> = ({ onBlogSaved }) => {
                 title: text,
             } as Blog)
             .then(() => {
-                onBlogSaved(); // Nach dem Speichern Blogs neu laden
+                onBlogSaved();
             });
     }
 
     return (
         <div className="input-container">
+            <Header />
             <input type="text" value={text} onChange={changeText} />
             <button onClick={saveBlog}>Add Blog</button>
         </div>

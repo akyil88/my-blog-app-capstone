@@ -1,39 +1,28 @@
-import {Link} from "react-router-dom";
 import "../Header/Header.css";
 import HomeButtonLogo from "../Images/Homebutton.png";
-import  {useState} from "react";
-import {AiOutlineClose} from "react-icons/ai";
-import {FaBars} from "react-icons/fa";
+import {Link} from "react-router-dom";
 
+type HeaderProps = {
+    onCreateBlog?: () => void; // Optional, da nicht immer benötigt
+};
 
-function Header() {
-
-    const [isNavShowing, setIsNavShowing] = useState(window.innerWidth > 800 ? true : false);
-
-    const closeNavHandler = () => {
-       if(window.innerWidth < 800) {
-           setIsNavShowing(false);
-       } else {
-           setIsNavShowing(true)
-       }
-    }
+const Header: React.FC<HeaderProps> = ({onCreateBlog}) => {
     return (
         <nav>
             <div className="container nav_container">
-            <Link to="/" className="nav_logo" onClick={closeNavHandler}><img src={HomeButtonLogo} alt="Navbar Logo"/></Link>
-
-                {isNavShowing && <ul className="nav_menu">
-                <li><Link to="/profile" onClick={closeNavHandler}>Gökhan Akyil</Link></li>
-                <li><Link to="/create" onClick={closeNavHandler}>Create Post</Link></li>
-                <li><Link to="/logout" onClick={closeNavHandler}>Logout</Link></li>
-            </ul>}
-            <button className="nav_toggle-btn" onClick={() => setIsNavShowing(!isNavShowing)}>
-                {isNavShowing ? <AiOutlineClose/>: <FaBars/>}
-            </button>
-
+                <Link to="/" className="nav_logo">
+                    <img src={HomeButtonLogo} alt="Navbar Logo"/>
+                </Link>
+                <ul className="nav_menu">
+                    <li><Link to="/profile">Gökhan Akyil</Link></li>
+                    {onCreateBlog && (
+                        <li><Link to="/create" onClick={onCreateBlog}>Create Post</Link></li>
+                    )}
+                    <li><Link to="/logout">Logout</Link></li>
+                </ul>
             </div>
         </nav>
-    )
-}
+    );
+};
 
 export default Header;

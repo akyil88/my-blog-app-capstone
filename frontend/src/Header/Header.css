@@ -1,34 +1,7 @@
-
-:root {
-    --color-primaary: #6f6af8;
-    --color-bg: hwb(240 95% 0%);
-    --container-width-lg: 84%;
-    --color-white:#fff;
+.nav_logo {
+    width: 3rem;
+    display: block;
 }
-
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    box-sizing: border-box;
-
-}
-
-
-body {
-    font-family: sans-serif;
-    background: var(--color-bg);
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-
-a {
-    text-decoration: none;
-}
-
-
 
 img {
     display: block;
@@ -36,81 +9,53 @@ img {
     width: 100%;
 }
 
+* {
+    margin: 0;
+    padding: 0;
 
-.nav_logo {
-    width: 3rem;
-    display: block;
 
 }
 
 
+body {
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
 ul {
+
     list-style: none;
 }
 
 nav {
     width: 100vw;
-    height: 5rem;
+    height: 6rem;
     display: grid;
-    place-items: center;
-    background: rgba(255, 255, 255, 0.5);
-    position: fixed;
+    place-items: flex-start;
+    position: initial;
     top: 0;
     left: 0;
-    z-index: 9;
-    border-bottom: 4px solid var(--color-bg);
+    z-index: 1;
+    border-bottom: 4px;
     backdrop-filter: blur(20px);
 }
 
 .nav_container {
-    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
+    width: 95%;
 
 }
 
 .nav_menu {
-    position: absolute;
-    top: 5rem;
-    flex-direction: column;
-    right: 0;
-    gap: 0;
-}
-
-.nav_menu li {
-    width: 100%;
-    box-shadow: -2rem 4rem 4rem rgba(0, 0, 0, 0.26);
-    animation: dropDown 500ms
-}
-
-@keyframes dropDown  {
-
-    to {
-        opacity: 1;
-        transform: rotateX(0)
-     }
-    }
-
-.nav_menu li:nth-child(2){
-    animation-delay: 300ms;
-}
-
-
-.nav_menu li a {
-    display: block;
-    background:var(--color-white);
-    padding: 0.85rem 2.5rem;
-}
-.nav_toggle-btn {
-    display: inline-block;
-    background: transparent;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-
-.container {
-    width: var(--container-width-lg);
+    display: flex;
+    align-items: center;
+    gap: 3rem;
 }
