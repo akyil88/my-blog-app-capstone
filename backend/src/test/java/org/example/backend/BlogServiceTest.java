@@ -16,89 +16,109 @@ class BlogServiceTest {
 
     @Test
     void testGetAllBlogs() {
-        //GIVEN
-        Blog blog1 = new Blog("1", "Title1", "Description1",);
-        Blog blog2 = new Blog("2", "Title2", "Description2","null");
-        Blog blog3 = new Blog("3", "Title3", "Description3","null");
+        // GIVEN
+        Blog blog1 = new Blog("1", "Title1", "Description1");
+        Blog blog2 = new Blog("2", "Title2", "Description2");
+        Blog blog3 = new Blog("3", "Title3", "Description3");
 
         List<Blog> expectedBlogs = List.of(blog1, blog2, blog3);
 
         when(mockBlogRepo.findAll()).thenReturn(List.of(blog1, blog2, blog3));
 
-        //WHEN
+        // WHEN
         List<Blog> result = blogService.getAllBlogs();
 
-        //THEN
+        // THEN
         assertEquals(expectedBlogs, result);
     }
 
     @Test
     void testPostBlog() {
-        //GIVEN
+        // GIVEN
         Blog blog = new Blog(null, "Title1", "Description1");
         String uuid = "generated-uuid";
 
-        Blog savedBlog = new Blog(uuid, blog.title(), blog.description());
+        Blog savedBlog = new Blog(uuid, blog.getTitle(), blog.getDescription());
 
         when(uuidService.generateUUID()).thenReturn(uuid);
         when(mockBlogRepo.save(any(Blog.class))).thenReturn(savedBlog);
 
-        //WHEN
+        // WHEN
         Blog result = blogService.postBlog(blog);
 
-        //THEN
+        // THEN
         assertEquals(savedBlog, result);
     }
 
     @Test
     void testGetBlogById() {
-        //GIVEN
+        // GIVEN
         Blog blog = new Blog("1", "Title1", "Description1");
         when(mockBlogRepo.findById("1")).thenReturn(Optional.of(blog));
 
-        //WHEN
+        // WHEN
         Blog result = blogService.getBlogById("1");
 
-        //THEN
+        // THEN
         assertEquals(blog, result);
     }
 
     @Test
     void testGetBlogByIdNotFound() {
-        //GIVEN
+        // GIVEN
         when(mockBlogRepo.findById("1")).thenReturn(Optional.empty());
 
-        //WHEN
+        // WHEN
         Blog result = blogService.getBlogById("1");
 
-        //THEN
+        // THEN
         assertNull(result);
     }
 
     @Test
     void testUpdateBlog() {
-        //GIVEN
+        // GIVEN
         UpdateBlog updateBlog = new UpdateBlog("UpdatedTitle", "UpdatedDescription");
         Blog updatedBlog = new Blog("1", updateBlog.getTitle(), updateBlog.getDescription());
 
         when(mockBlogRepo.save(any(Blog.class))).thenReturn(updatedBlog);
 
-        //WHEN
+        // WHEN
         Blog result = blogService.updateBlog(updateBlog, "1");
 
-        //THEN
+        // THEN
         assertEquals(updatedBlog, result);
     }
 
     @Test
     void testDeleteBlog() {
-        //GIVEN
+        // GIVEN
         doNothing().when(mockBlogRepo).deleteById("1");
 
-        //WHEN
+        // WHEN
         blogService.delete("1");
 
-        //THEN
+        // THEN
         verify(mockBlogRepo, times(1)).deleteById("1");
     }
+
+    @Test
+    void testPostBlogWithImage() {
+        // GIVEN
+        byte[] imageData = new byte[]{};
+        Blog blog = new Blog("Title1", "Description1", imageData);
+        String uuid = "generated-uuid";
+
+        Blog savedBlog = new Blog(uuid, blog.getTitle(), blog.getDescription(), blog.getImage());
+
+        when(uuidService.generateUUID()).thenReturn(uuid);
+        when(mockBlogRepo.save(any(Blog.class))).thenReturn(savedBlog);
+
+        // WHEN
+        Blog result = blogService.postBlog(blog);
+
+        // THEN
+        assertEquals(savedBlog, result);
+    }
+
 }

@@ -22,6 +22,12 @@ public class Blog {
         this.description = description;
     }
 
+    public Blog(String number, String title1, String description1) {
+    }
+
+    public Blog(String title1, String description1, byte[] imageData) {
+    }
+
     public Blog withId(String id) {
         return new Blog(id, this.title, this.description, this.image);
     }
