@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional; // Import java.util.Optional hier verwenden
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,14 +29,16 @@ public class BlogService {
         return blogRepo.findById(id).orElse(null);
     }
 
-    public Blog updateBlog(UpdateBlog blog, String id) {
+    public Blog updateBlog(UpdateBlog updateBlog, String id) {
         Optional<Blog> optionalExistingBlog = blogRepo.findById(id);
 
-        if (optionalExistingBlog.isPresent()) { // Verwenden Sie isPresent() auf java.util.Optional
-            Blog existingBlog = optionalExistingBlog.get(); // Verwenden Sie get() auf java.util.Optional
-            // Update logik hier
-            Blog updatedBlog = new Blog(id, blog.getTitle(), blog.getDescription(), existingBlog.getImage());
-            return blogRepo.save(updatedBlog);
+        if (optionalExistingBlog.isPresent()) {
+            Blog existingBlog = optionalExistingBlog.get();
+            existingBlog.setTitle(updateBlog.getTitle());
+            existingBlog.setDescription(updateBlog.getDescription());
+            // Hier könnte Logik zur Aktualisierung des Bildes stehen, falls erforderlich
+
+            return blogRepo.save(existingBlog);
         } else {
             throw new RuntimeException("Blog mit ID " + id + " nicht gefunden.");
         }
@@ -52,4 +54,6 @@ public class BlogService {
         Blog blog = new Blog(uuid, title, description, imageBytes);
         return blogRepo.save(blog);
     }
+
+
 }

@@ -78,17 +78,20 @@ class BlogServiceTest {
     @Test
     void testUpdateBlog() {
         // GIVEN
+        String blogId = "1"; // Hier sollte eine gültige Blog-ID verwendet werden
         UpdateBlog updateBlog = new UpdateBlog("UpdatedTitle", "UpdatedDescription");
-        Blog updatedBlog = new Blog("1", updateBlog.getTitle(), updateBlog.getDescription());
+        Blog updatedBlog = new Blog(blogId, updateBlog.getTitle(), updateBlog.getDescription());
 
         when(mockBlogRepo.save(any(Blog.class))).thenReturn(updatedBlog);
+        when(mockBlogRepo.findById(blogId)).thenReturn(Optional.of(new Blog(blogId, "OriginalTitle", "OriginalDescription")));
 
         // WHEN
-        Blog result = blogService.updateBlog(updateBlog, "1");
+        Blog result = blogService.updateBlog(updateBlog, blogId);
 
         // THEN
         assertEquals(updatedBlog, result);
     }
+
 
     @Test
     void testDeleteBlog() {
