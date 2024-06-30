@@ -1,23 +1,28 @@
-
 package org.example.backend;
 
-public record Blog(
-        String id,
-        String title,
-        String description
-) {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-    Blog (
-            String title,
-            String description
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "blogs")
+public class Blog {
+    @Id
+    private String id;
+    private String title;
+    private String description;
+    private byte[] image;
 
-    ){
-        this(null, description, title);
+    public Blog(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public Blog withId(String id) {
-        return new Blog(id, title, description);
+        return new Blog(id, this.title, this.description, this.image);
     }
-
-
 }

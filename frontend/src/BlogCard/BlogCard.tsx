@@ -1,7 +1,7 @@
-import { Blog } from "./Blog.ts";
 import axios from "axios";
 import React, { FormEvent, useState } from "react";
 import './BlogCard.css';
+import { Blog } from "./Blog.ts";
 
 type BlogCardProps = {
     blog: Blog,
@@ -13,6 +13,7 @@ const BlogCard: React.FC<BlogCardProps> = (props) => {
     const [title, setTitle] = useState(props.blog.title);
     const [description, setDescription] = useState(props.blog.description);
     const [isEditing, setIsEditing] = useState(false);
+    const [currentImage, setCurrentImage] = useState(props.blog.image); // Zustand für das aktuelle Bild
 
     function deleteThisItem(): void {
         axios.delete("/api/blog/" + props.blog.id)
@@ -32,10 +33,12 @@ const BlogCard: React.FC<BlogCardProps> = (props) => {
         axios.put(`/api/blog/${props.blog.id}`, {
             title: title,
             description: description,
+            image: currentImage // Aktualisiertes Bild mit speichern
         })
             .then(response => {
                 console.log('Blog updated successfully', response.data);
                 setIsEditing(false);
+                setCurrentImage(response.data.image); // Aktualisiert das aktuelle Bild nach dem Speichern
                 if (props.onSave) {
                     props.onSave();
                 }
@@ -65,6 +68,11 @@ const BlogCard: React.FC<BlogCardProps> = (props) => {
                 </form>
             ) : (
                 <>
+                    {currentImage && (
+                        <div className="image-preview">
+                            <img src={`data:image/jpeg;base64,${currentImage}`} alt="Blog Image" />
+                        </div>
+                    )}
                     <h3>{title}</h3>
                     <p>{description}</p>
                 </>

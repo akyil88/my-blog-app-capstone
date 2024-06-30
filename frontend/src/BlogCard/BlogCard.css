@@ -1,6 +1,5 @@
 /* index.css */
 
-/* Allgemeine Stile */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -8,7 +7,6 @@ body {
     padding: 0;
 }
 
-/* App Container */
 .app {
     max-width: 800px;
     margin: 20px auto;
@@ -18,13 +16,11 @@ body {
     border-radius: 8px;
 }
 
-/* Header */
 h1 {
     text-align: center;
     color: #333;
 }
 
-/* Input Field and Button */
 input[type="text"] {
     width: calc(100% - 100px);
     padding: 10px;
@@ -47,7 +43,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Blog Card */
 .blog-card {
     background: #fff;
     border: 1px solid #ddd;
@@ -65,7 +60,6 @@ button:hover {
     color: #666;
 }
 
-/* Edit and Delete Buttons */
 .delete-button, .edit-button {
     background: none;
     border: none;
@@ -83,7 +77,6 @@ button:hover {
     color: #0056b3;
 }
 
-/* Form Styles in Blog Card */
 .blog-card form {
     display: flex;
     flex-direction: column;
@@ -107,4 +100,13 @@ button:hover {
 
 .blog-card form button[type="submit"]:hover {
     background-color: #218838;
+}
+
+.image-preview img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

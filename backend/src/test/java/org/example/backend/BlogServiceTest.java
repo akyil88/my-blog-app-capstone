@@ -17,9 +17,9 @@ class BlogServiceTest {
     @Test
     void testGetAllBlogs() {
         //GIVEN
-        Blog blog1 = new Blog("1", "Title1", "Description1");
-        Blog blog2 = new Blog("2", "Title2", "Description2");
-        Blog blog3 = new Blog("3", "Title3", "Description3");
+        Blog blog1 = new Blog("1", "Title1", "Description1",);
+        Blog blog2 = new Blog("2", "Title2", "Description2","null");
+        Blog blog3 = new Blog("3", "Title3", "Description3","null");
 
         List<Blog> expectedBlogs = List.of(blog1, blog2, blog3);
 

@@ -5,6 +5,7 @@ import BlogCard from "../BlogCard/BlogCard.tsx";
 import Header from "../Header/Header.tsx";
 
 
+
 const Homepage: React.FC = () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
 
