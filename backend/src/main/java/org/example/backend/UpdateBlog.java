@@ -18,4 +18,10 @@ public class UpdateBlog {
     public String getTitle() {
         return title;
     }
+
+    public boolean getImage() {
+        // Hier könnte Logik stehen, um z.B. zu prüfen, ob ein Bild vorhanden ist
+        // Rückgabe eines Booleans je nach Bedarf
+        return false; // Beispielhaft: Hier wird immer false zurückgegeben
+    }
 }

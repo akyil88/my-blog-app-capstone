@@ -2,8 +2,11 @@ package org.example.backend;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,8 +21,7 @@ public class BlogService {
 
     public Blog postBlog(Blog blog) {
         String uuid = uuidService.generateUUID();
-        Blog blogSaved = new Blog(uuid, blog.title(), blog.description());
-
+        Blog blogSaved = blog.withId(uuid);
         return blogRepo.save(blogSaved);
     }
 
@@ -27,13 +29,31 @@ public class BlogService {
         return blogRepo.findById(id).orElse(null);
     }
 
-    public Blog updateBlog(UpdateBlog blog, String id) {
-        Blog blogToUpdate = new Blog(id, blog.getDescription(), blog.getTitle());
+    public Blog updateBlog(UpdateBlog updateBlog, String id) {
+        Optional<Blog> optionalExistingBlog = blogRepo.findById(id);
 
-        return blogRepo.save(blogToUpdate);
+        if (optionalExistingBlog.isPresent()) {
+            Blog existingBlog = optionalExistingBlog.get();
+            existingBlog.setTitle(updateBlog.getTitle());
+            existingBlog.setDescription(updateBlog.getDescription());
+            // Hier könnte Logik zur Aktualisierung des Bildes stehen, falls erforderlich
+
+            return blogRepo.save(existingBlog);
+        } else {
+            throw new RuntimeException("Blog mit ID " + id + " nicht gefunden.");
+        }
     }
 
     public void delete(String id) {
         blogRepo.deleteById(id);
     }
+
+    public Blog postBlogWithImage(String title, String description, MultipartFile imageFile) throws IOException {
+        String uuid = uuidService.generateUUID();
+        byte[] imageBytes = imageFile.getBytes();
+        Blog blog = new Blog(uuid, title, description, imageBytes);
+        return blogRepo.save(blog);
+    }
+
+
 }
