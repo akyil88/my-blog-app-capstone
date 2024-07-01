@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header.tsx";
 import "./BlogCreatePage.css";
 import ReactQuill from 'react-quill';
@@ -14,17 +15,23 @@ const CreateBlog: React.FC<Props> = ({ onBlogSaved }) => {
     const [description, setDescription] = useState("");
     const [image, setImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     const modules = {
         toolbar: [
-            [{ 'header': [1, 2, false] }],
-            ['bold', 'italic', 'underline']
+            [{ 'header': [1, 2,3,4,5,6, false] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+            ['link','image'],
+            ['clean']
         ],
-    };
+    }
 
     const formats = [
-        'header', 'bold', 'italic', 'underline'
-    ];
+        'header', 'bold', 'italic', 'underline', 'strike', 'blockquote',
+        'list', 'bullet', 'indent',
+        'link','image'
+    ]
 
     const changeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
@@ -69,6 +76,7 @@ const CreateBlog: React.FC<Props> = ({ onBlogSaved }) => {
             setDescription("");
             setImage(null);
             setImagePreview(null);
+            navigate("/"); // Redirect to homepage
         } catch (error) {
             console.error("There was an error uploading the blog!", error);
         }
