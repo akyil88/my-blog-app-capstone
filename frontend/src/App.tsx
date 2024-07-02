@@ -13,9 +13,6 @@ function App() {
             <Route path="create" element={<BlogCreatePage/>}/>
             <Route path="/blog/:id" element={<BlogDetail/>}/>
             <Route path="/blog/:id/edit" element={<EditPost />} />
-
-
-
         </Routes>
     );
 }

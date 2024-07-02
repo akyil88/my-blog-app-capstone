@@ -38,11 +38,6 @@ const BlogDetail: React.FC = () => {
         }
     }
 
-    function editBlog(): void {
-
-        console.log('Edit blog:', blog);
-    }
-
     if (!blog) {
         return <div>Loading...</div>;
     }

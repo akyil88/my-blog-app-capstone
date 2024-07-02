@@ -36,7 +36,7 @@ public class BlogService {
             Blog existingBlog = optionalExistingBlog.get();
             existingBlog.setTitle(updateBlog.getTitle());
             existingBlog.setDescription(updateBlog.getDescription());
-            // Hier könnte Logik zur Aktualisierung des Bildes stehen, falls erforderlich
+
 
             return blogRepo.save(existingBlog);
         } else {

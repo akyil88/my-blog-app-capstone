@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 type BlogCardProps = {
     blog: Blog,
+    onBlogItemChange: () => void;
 };
 
 const BlogCard: React.FC<BlogCardProps> = (props) => {

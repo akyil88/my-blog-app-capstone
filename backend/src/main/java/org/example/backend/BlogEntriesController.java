@@ -73,6 +73,4 @@ public class BlogEntriesController {
         // Save updated blog
         return blogService.save(existingBlog);
     }
-
-
 }

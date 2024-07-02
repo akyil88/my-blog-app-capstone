@@ -6,16 +6,8 @@ import Header from "../Header/Header.tsx";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-type Blog = {
-    id: string;
-    title: string;
-    description: string;
-    image: string; // Assuming image is stored as a base64 string
-};
-
 const EditPost: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const [blog, setBlog] = useState<Blog | null>(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState<File | null>(null);
@@ -26,9 +18,9 @@ const EditPost: React.FC = () => {
         // Fetch blog details
         axios.get(`/api/blog/${id}`)
             .then(response => {
-                setBlog(response.data);
-                setTitle(response.data.title);
-                setDescription(response.data.description);
+                const data = response.data;
+                setTitle(data.title);
+                setDescription(data.description);
             })
             .catch(error => {
                 console.error('Error fetching blog details:', error);
@@ -76,7 +68,6 @@ const EditPost: React.FC = () => {
         event.preventDefault();
 
         const formData = new FormData();
-        formData.append("id", blog?.id || "");
         formData.append("title", title);
         formData.append("description", description);
         if (image) {
@@ -84,13 +75,13 @@ const EditPost: React.FC = () => {
         }
 
         try {
-            const response = await axios.put(`/api/blog/${blog?.id}`, formData, {
+            const response = await axios.put(`/api/blog/${id}/upload`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
             console.log(response.data);
-            navigate(`/blog/${blog?.id}`);
+            navigate(`/blog/${id}`);
         } catch (error) {
             console.error("Error updating blog:", error);
         }
