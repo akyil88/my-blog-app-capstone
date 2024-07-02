@@ -28,7 +28,7 @@
         <dependency>
             <groupId>de.flapdoodle.embed</groupId>
             <artifactId>de.flapdoodle.embed.mongo.spring3x</artifactId>
-            <version>4.14.0</version>
+            <version>4.13.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -100,11 +100,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
-            </plugin>
+
         </plugins>
     </build>
 </project>
