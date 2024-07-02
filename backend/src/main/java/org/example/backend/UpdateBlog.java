@@ -20,8 +20,7 @@ public class UpdateBlog {
     }
 
     public boolean getImage() {
-        // Hier könnte Logik stehen, um z.B. zu prüfen, ob ein Bild vorhanden ist
-        // Rückgabe eines Booleans je nach Bedarf
-        return false; // Beispielhaft: Hier wird immer false zurückgegeben
+
+        return false;
     }
 }

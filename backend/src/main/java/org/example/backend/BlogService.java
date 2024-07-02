@@ -54,6 +54,13 @@ public class BlogService {
         Blog blog = new Blog(uuid, title, description, imageBytes);
         return blogRepo.save(blog);
     }
+    public Optional<Blog> findById(String id) {
+        return blogRepo.findById(id);
+    }
+    public Blog save(Blog blog) {
+        return blogRepo.save(blog);
+    }
+
 
 
 }

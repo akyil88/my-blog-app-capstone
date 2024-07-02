@@ -1,21 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Header/Header.tsx";
-import "./BlogCreatePage.css";
+
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-type Props = {
-    onBlogSaved?: () => void;
+type Blog = {
+    id: string;
+    title: string;
+    description: string;
+    image: string; // Assuming image is stored as a base64 string
 };
 
-const CreateBlog: React.FC<Props> = ({ onBlogSaved = () => {} }) => {
+const EditPost: React.FC = () => {
+    const { id } = useParams<{ id: string }>();
+    const [blog, setBlog] = useState<Blog | null>(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Fetch blog details
+        axios.get(`/api/blog/${id}`)
+            .then(response => {
+                setBlog(response.data);
+                setTitle(response.data.title);
+                setDescription(response.data.description);
+            })
+            .catch(error => {
+                console.error('Error fetching blog details:', error);
+            });
+    }, [id]);
 
     const modules = {
         toolbar: [
@@ -58,6 +76,7 @@ const CreateBlog: React.FC<Props> = ({ onBlogSaved = () => {} }) => {
         event.preventDefault();
 
         const formData = new FormData();
+        formData.append("id", blog?.id || "");
         formData.append("title", title);
         formData.append("description", description);
         if (image) {
@@ -65,32 +84,27 @@ const CreateBlog: React.FC<Props> = ({ onBlogSaved = () => {} }) => {
         }
 
         try {
-            const response = await axios.post("/api/blog/upload", formData, {
+            const response = await axios.put(`/api/blog/${blog?.id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
             console.log(response.data);
-            onBlogSaved();
-            setTitle("");
-            setDescription("");
-            setImage(null);
-            setImagePreview(null);
-            navigate("/");
+            navigate(`/blog/${blog?.id}`);
         } catch (error) {
-            console.error("There was an error uploading the blog!", error);
+            console.error("Error updating blog:", error);
         }
     };
 
     return (
-        <section className="create-post">
+        <section className="edit-post">
             <Header />
             <div className="container">
-                <h2>Create Post</h2>
-                <form className="form create-post_form" onSubmit={saveBlog}>
+                <h2>Edit Post</h2>
+                <form className="form edit-post_form" onSubmit={saveBlog}>
                     <input
                         type="text"
-                        placeholder="title"
+                        placeholder="Title"
                         value={title}
                         onChange={changeTitle}
                         autoFocus
@@ -107,11 +121,11 @@ const CreateBlog: React.FC<Props> = ({ onBlogSaved = () => {} }) => {
                             <img src={imagePreview} alt="Preview" />
                         </div>
                     )}
-                    <button type="submit" className="btn primary">Create</button>
+                    <button type="submit" className="btn primary">Update</button>
                 </form>
             </div>
         </section>
     );
 };
 
-export default CreateBlog;
+export default EditPost;

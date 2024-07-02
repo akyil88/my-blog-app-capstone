@@ -1,7 +1,7 @@
 import React from "react";
 import './BlogCard.css';
 import { Blog } from "./Blog.ts";
-import { Link } from "react-router-dom"; // Importiere Link für React Router
+import { Link } from "react-router-dom";
 
 type BlogCardProps = {
     blog: Blog,

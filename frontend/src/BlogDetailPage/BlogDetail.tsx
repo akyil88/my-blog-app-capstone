@@ -1,35 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import './BlogDetail.css';
 import { Blog } from "../BlogCard/Blog.ts";
-import Header from "../Header/Header.tsx"; // Stile für die Detailseite
+import Header from "../Header/Header.tsx";
 
 type BlogDetailParams = {
     id: string;
 };
 
 const BlogDetail: React.FC = () => {
-    const { id } = useParams<BlogDetailParams>(); // Hole die Blog ID aus den URL-Parametern
-    const [blog, setBlog] = useState<Blog | null>(null); // Zustand für den Blogbeitrag
+    const { id } = useParams<BlogDetailParams>();
+    const [blog, setBlog] = useState<Blog | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // Lade den Blogbeitrag beim ersten Rendern der Komponente
+
         axios.get(`/api/blog/${id}`)
             .then(response => {
-                setBlog(response.data); // Setze den geladenen Blogbeitrag in den Zustand
+                setBlog(response.data);
             })
             .catch(error => {
                 console.error('Error fetching blog details:', error);
             });
-    }, [id]); // Abhängigkeit von der Blog ID
+    }, [id]);
 
     function deleteBlog(): void {
         if (blog) {
             axios.delete(`/api/blog/${blog.id}`)
                 .then(() => {
                     console.log('Blog deleted successfully');
-                    // Hier kannst du eine Weiterleitung oder andere Aktionen nach dem Löschen einfügen
+                    navigate('/');
                 })
                 .catch(error => {
                     console.error('Error deleting blog:', error);
@@ -38,12 +39,12 @@ const BlogDetail: React.FC = () => {
     }
 
     function editBlog(): void {
-        // Hier kannst du zur Editierungsseite weiterleiten oder die Bearbeitung innerhalb dieser Komponente implementieren
+
         console.log('Edit blog:', blog);
     }
 
     if (!blog) {
-        return <div>Loading...</div>; // Ladeanzeige, während der Blogbeitrag geladen wird
+        return <div>Loading...</div>;
     }
 
     return (
