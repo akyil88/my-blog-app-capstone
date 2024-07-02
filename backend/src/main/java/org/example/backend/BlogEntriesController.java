@@ -54,10 +54,10 @@ public class BlogEntriesController {
                                  @RequestParam("title") String title,
                                  @RequestParam("description") String description,
                                  @RequestParam(value = "image", required = false) MultipartFile imageFile) throws IOException {
-        // Fetch existing blog
+
         Blog existingBlog = blogService.getBlogById(id);
         if (existingBlog == null) {
-            throw new RuntimeException("Blog mit ID " + id + " nicht gefunden.");
+            throw new IllegalArgumentException("Blog mit ID " + id + " nicht gefunden.");
         }
 
         // Update title and description

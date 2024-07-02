@@ -40,7 +40,7 @@ public class BlogService {
 
             return blogRepo.save(existingBlog);
         } else {
-            throw new RuntimeException("Blog mit ID " + id + " nicht gefunden.");
+            throw new IllegalArgumentException("Blog mit ID " + id + " nicht gefunden.");
         }
     }
 
