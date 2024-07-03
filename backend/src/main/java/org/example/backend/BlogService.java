@@ -36,11 +36,11 @@ public class BlogService {
             Blog existingBlog = optionalExistingBlog.get();
             existingBlog.setTitle(updateBlog.getTitle());
             existingBlog.setDescription(updateBlog.getDescription());
-            // Hier könnte Logik zur Aktualisierung des Bildes stehen, falls erforderlich
+
 
             return blogRepo.save(existingBlog);
         } else {
-            throw new RuntimeException("Blog mit ID " + id + " nicht gefunden.");
+            throw new IllegalArgumentException("Blog mit ID " + id + " nicht gefunden.");
         }
     }
 
@@ -54,6 +54,13 @@ public class BlogService {
         Blog blog = new Blog(uuid, title, description, imageBytes);
         return blogRepo.save(blog);
     }
+    public Optional<Blog> findById(String id) {
+        return blogRepo.findById(id);
+    }
+    public Blog save(Blog blog) {
+        return blogRepo.save(blog);
+    }
+
 
 
 }

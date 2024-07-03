@@ -1,38 +1,50 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 import Header from "../Header/Header.tsx";
 import "./BlogCreatePage.css";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 type Props = {
-    onBlogSaved: () => void;
+    onBlogSaved?: () => void;
 };
 
-const CreateBlog: React.FC<Props> = ({ onBlogSaved }) => {
+const CreateBlog: React.FC<Props> = ({
+                                         onBlogSaved = () => {
+                                         }
+                                     }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     const modules = {
         toolbar: [
-            [{ 'header': [1, 2, false] }],
-            ['bold', 'italic', 'underline']
+            [{'header': [1, 2, 3, 4, 5, 6, false]}],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+            ['link', 'image'],
+            ['clean']
         ],
     };
 
     const formats = [
-        'header', 'bold', 'italic', 'underline'
+        'header', 'bold', 'italic', 'underline', 'strike', 'blockquote',
+        'list', 'bullet', 'indent',
+        'link', 'image'
     ];
+
+
+    const changeDescription = (value: string) => {
+        setDescription(value);
+    };
 
     const changeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
     };
 
-    const changeDescription = (value: string) => {
-        setDescription(value);
-    };
 
     const changeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
@@ -69,6 +81,7 @@ const CreateBlog: React.FC<Props> = ({ onBlogSaved }) => {
             setDescription("");
             setImage(null);
             setImagePreview(null);
+            navigate("/");
         } catch (error) {
             console.error("There was an error uploading the blog!", error);
         }
@@ -76,7 +89,7 @@ const CreateBlog: React.FC<Props> = ({ onBlogSaved }) => {
 
     return (
         <section className="create-post">
-            <Header />
+            <Header/>
             <div className="container">
                 <h2>Create Post</h2>
                 <form className="form create-post_form" onSubmit={saveBlog}>
@@ -96,7 +109,7 @@ const CreateBlog: React.FC<Props> = ({ onBlogSaved }) => {
                     <input type="file" onChange={changeImage} accept="image/png, image/jpeg"/>
                     {imagePreview && (
                         <div className="image-preview">
-                            <img src={imagePreview} alt="Preview" />
+                            <img src={imagePreview} alt="Preview"/>
                         </div>
                     )}
                     <button type="submit" className="btn primary">Create</button>

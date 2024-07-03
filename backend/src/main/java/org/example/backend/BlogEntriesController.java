@@ -48,4 +48,29 @@ public class BlogEntriesController {
                                   @RequestParam("image") MultipartFile imageFile) throws IOException {
         return blogService.postBlogWithImage(title, description, imageFile);
     }
+
+    @PutMapping(value = "/{id}/upload", consumes = {"multipart/form-data"})
+    public Blog putBlogWithImage(@PathVariable String id,
+                                 @RequestParam("title") String title,
+                                 @RequestParam("description") String description,
+                                 @RequestParam(value = "image", required = false) MultipartFile imageFile) throws IOException {
+
+        Blog existingBlog = blogService.getBlogById(id);
+        if (existingBlog == null) {
+            throw new IllegalArgumentException("Blog mit ID " + id + " nicht gefunden.");
+        }
+
+        // Update title and description
+        existingBlog.setTitle(title);
+        existingBlog.setDescription(description);
+
+        // Update image if provided
+        if (imageFile != null && !imageFile.isEmpty()) {
+            byte[] imageBytes = imageFile.getBytes();
+            existingBlog.setImage(imageBytes);
+        }
+
+        // Save updated blog
+        return blogService.save(existingBlog);
+    }
 }

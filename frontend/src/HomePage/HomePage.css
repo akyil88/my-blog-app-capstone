@@ -1,11 +1,11 @@
 
 .image-preview {
-    max-width: 150px; /* Setzt die maximale Breite des Bildes auf 150px */
-    max-height: 150px; /* Setzt die maximale Höhe des Bildes auf 150px */
-    width: auto; /* Beibehaltung des Seitenverhältnisses */
-    height: auto; /* Beibehaltung des Seitenverhältnisses */
-    display: block; /* Zeigt das Bild als Blockelement */
-    margin: 10px auto; /* Zentriert das Bild und fügt einen Abstand hinzu */
-    border-radius: 10px; /* Fügt abgerundete Ecken hinzu */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Fügt einen leichten Schatten hinzu */
+    max-width: 150px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
