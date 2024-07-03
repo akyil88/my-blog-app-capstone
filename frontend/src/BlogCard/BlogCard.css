@@ -1,67 +1,42 @@
 .blog-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.blog-card h3 {
-    margin-top: 0;
-}
-
-.blog-card p {
-    color: #666;
-}
-
-.delete-button, .edit-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #007BFF;
-    margin-left: 5px;
-}
-
-.delete-button:hover {
-    color: #FF0000;
-}
-
-.edit-button:hover {
-    color: #0056b3;
-}
-
-.blog-card form {
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-card form input[type="text"] {
-    padding: 10px;
-    margin-bottom: 10px;
+    text-align: left; /* Text links ausrichten */
+    overflow: hidden;
+    margin: 80px auto 20px; /* Oben: 80px, links/rechts: auto (zentriert), unten: 20px */
+    padding: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Maximale Breite der Karte */
 }
 
-.blog-card form button[type="submit"] {
-    padding: 10px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.blog-card form button[type="submit"]:hover {
-    background-color: #218838;
+.image-preview {
+    float: left; /* Bild nach links floaten */
+    margin-right: 16px; /* Rechter Abstand zum Text */
 }
 
 .image-preview img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100px; /* Maximale Breite des Bildes */
+    height: auto; /* Erhält das Seitenverhältnis */
+    border-radius: 5px; /* Optional: Abgerundete Ecken */
+    transform: scale(1.2); /* Vergrößert das Bild um 20% */
+    transition: transform 0.3s ease; /* Übergangseffekt bei Vergrößerung */
+}
+
+.blog-title {
+    font-size: 24px;
+    color: #333;
+    margin-top: 10px; /* Kein Abstand oberhalb des Titels */
+    margin-bottom: 3px; /* Abstand unterhalb des Titels */
+}
+
+.blog-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    overflow: hidden; /* Verhindert das Überlaufen von Text */
+    text-overflow: ellipsis; /* Zeigt "..." an, wenn der Text zu lang ist */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Zeigt maximal 3 Zeilen Text an */
+    -webkit-box-orient: vertical; /* Legt die Richtung der Box fest */
 }
