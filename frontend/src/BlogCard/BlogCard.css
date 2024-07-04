@@ -31,7 +31,7 @@ body {
 }
 
 .image-preview {
-    width: 10%; /* Breite des Bildes */
+    width: 20%; /* Breite des Bildes */
     overflow: hidden;
 }
 

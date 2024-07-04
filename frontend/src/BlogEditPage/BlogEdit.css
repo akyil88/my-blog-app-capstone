@@ -1,11 +1,10 @@
-/* EditPost.css */
-
 .edit-post {
     padding: 20px;
     background-color: #f9f9f9;
 }
 
 .container {
+
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
@@ -26,6 +25,7 @@ h2 {
 }
 
 .edit-post_form input[type="text"],
+.edit-post_form textarea,
 .edit-post_form input[type="file"] {
     width: 100%;
     padding: 10px;
@@ -62,20 +62,4 @@ h2 {
 
 .btn.primary:hover {
     background-color: #0056b3;
-}
-
-/* Styling for ReactQuill editor */
-.ql-editor {
-    min-height: 200px;
-}
-
-.ql-toolbar {
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    border-radius: 4px 4px 0 0;
-}
-
-.ql-container {
-    border: 1px solid #ccc;
-    border-radius: 0 0 4px 4px;
 }
