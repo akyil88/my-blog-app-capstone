@@ -5,6 +5,7 @@ import Header from "../Header/Header.tsx";
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import './BlogEdit.css';  // Import the CSS file here
 
 const EditPost: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -89,9 +90,10 @@ const EditPost: React.FC = () => {
 
     return (
         <section className="edit-post">
-            <Header />
+            <h2>Edit Post</h2>
+            <Header/>
             <div className="container">
-                <h2>Edit Post</h2>
+
                 <form className="form edit-post_form" onSubmit={saveBlog}>
                     <input
                         type="text"
@@ -106,10 +108,10 @@ const EditPost: React.FC = () => {
                         value={description}
                         onChange={changeDescription}
                     />
-                    <input type="file" onChange={changeImage} accept="image/png, image/jpeg" />
+                    <input type="file" onChange={changeImage} accept="image/png, image/jpeg"/>
                     {imagePreview && (
                         <div className="image-preview">
-                            <img src={imagePreview} alt="Preview" />
+                            <img src={imagePreview} alt="Preview"/>
                         </div>
                     )}
                     <button type="submit" className="btn primary">Update</button>
