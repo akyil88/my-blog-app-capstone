@@ -6,24 +6,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 135vh;
 }
 
 .container {
-    display: flex;
-    justify-content: center; /* Zentrieren der BlogCards */
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding-bottom: 2rem;
+    cursor: default;
 
 }
-
 .blog-card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 100%;
-    display: flex; /* Flexbox verwenden */
-    margin: 20px;
-    transition: transform 0.2s;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center; /* Zentriert die Karten horizontal */
+}
+
+@media (max-width: 768px) {
+    .blog-card {
+        grid-template-columns: 1fr; /* Ein Spalte auf kleineren Bildschirmen */
+    }
 }
 
 .blog-card:hover {
@@ -31,11 +34,13 @@ body {
 }
 
 .image-preview {
-    width: 20%; /* Breite des Bildes */
-    overflow: hidden;
+    width: 35%; /* Breite des Bildes */
+
+    border-radius: 10%;
 }
 
 .image-preview img {
+
     width: 100%;
     height: auto; /* Automatische Höhe */
     object-fit: cover; /* Bild zuschneiden, um den Container zu füllen */
