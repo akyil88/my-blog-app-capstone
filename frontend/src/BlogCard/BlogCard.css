@@ -1,42 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Zentrieren der BlogCards */
+
+}
+
 .blog-card {
-    text-align: left; /* Text links ausrichten */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin: 80px auto 20px; /* Oben: 80px, links/rechts: auto (zentriert), unten: 20px */
-    padding: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 600px; /* Maximale Breite der Karte */
+    width: 100%;
+    display: flex; /* Flexbox verwenden */
+    margin: 20px;
+    transition: transform 0.2s;
+}
+
+.blog-card:hover {
+    transform: scale(1.05);
 }
 
 .image-preview {
-    float: left; /* Bild nach links floaten */
-    margin-right: 16px; /* Rechter Abstand zum Text */
+    width: 10%; /* Breite des Bildes */
+    overflow: hidden;
 }
 
 .image-preview img {
-    max-width: 100px; /* Maximale Breite des Bildes */
-    height: auto; /* Erhält das Seitenverhältnis */
-    border-radius: 5px; /* Optional: Abgerundete Ecken */
-    transform: scale(1.2); /* Vergrößert das Bild um 20% */
-    transition: transform 0.3s ease; /* Übergangseffekt bei Vergrößerung */
+    width: 100%;
+    height: auto; /* Automatische Höhe */
+    object-fit: cover; /* Bild zuschneiden, um den Container zu füllen */
+    display: block;
+}
+
+.blog-content {
+    padding: 10px;
+    flex: 1; /* Nimmt den verfügbaren Platz ein */
 }
 
 .blog-title {
-    font-size: 24px;
+    font-size: 1.6em;
     color: #333;
-    margin-top: 10px; /* Kein Abstand oberhalb des Titels */
-    margin-bottom: 3px; /* Abstand unterhalb des Titels */
+    margin: 0;
+    text-decoration: none;
+}
+
+.blog-title a {
+    text-decoration: none;
+    color: inherit;
+
 }
 
 .blog-description {
-    font-size: 16px;
+    font-size: 1em;
     color: #666;
-    line-height: 1.5;
-    overflow: hidden; /* Verhindert das Überlaufen von Text */
-    text-overflow: ellipsis; /* Zeigt "..." an, wenn der Text zu lang ist */
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* Zeigt maximal 3 Zeilen Text an */
-    -webkit-box-orient: vertical; /* Legt die Richtung der Box fest */
+    margin-top: 10px;
+    line-height: 1.6;
 }
