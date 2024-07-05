@@ -6,26 +6,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 135vh;
+    min-height: 100vh; /* Mindesthöhe des Viewports */
 }
 
 .container {
     background-color: #f4f4f4;
     border-radius: 8px;
-    padding-bottom: 2rem;
+    padding: 20px;
     cursor: default;
-
 }
+
 .blog-card {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    justify-content: center; /* Zentriert die Karten horizontal */
+    display: flex; /* Flexbox für die Blog-Karte */
+    gap: 20px; /* Abstand zwischen Bild und Inhalt */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 @media (max-width: 768px) {
     .blog-card {
-        grid-template-columns: 1fr; /* Ein Spalte auf kleineren Bildschirmen */
+        flex-direction: column; /* Stapeln auf kleineren Bildschirmen */
     }
 }
 
@@ -35,20 +36,20 @@ body {
 
 .image-preview {
     width: 35%; /* Breite des Bildes */
-
-    border-radius: 10%;
+    max-width: 200px; /* Maximale Breite des Bildes */
+    border-radius: 8px; /* Abgerundete Ecken */
+    overflow: hidden;
 }
 
 .image-preview img {
-
     width: 100%;
-    height: auto; /* Automatische Höhe */
-    object-fit: cover; /* Bild zuschneiden, um den Container zu füllen */
+    height: auto;
+    object-fit: cover;
     display: block;
+    border-radius: 8px; /* Abgerundete Ecken */
 }
 
 .blog-content {
-    padding: 10px;
     flex: 1; /* Nimmt den verfügbaren Platz ein */
 }
 
@@ -62,7 +63,6 @@ body {
 .blog-title a {
     text-decoration: none;
     color: inherit;
-
 }
 
 .blog-description {
