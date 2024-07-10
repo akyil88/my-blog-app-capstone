@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Header/Header.tsx";
-
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import './BlogEdit.css';  // Import the CSS file here
 
 const EditPost: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -27,28 +25,12 @@ const EditPost: React.FC = () => {
             });
     }, [id]);
 
-    const modules = {
-        toolbar: [
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-            ['link', 'image'],
-            ['clean']
-        ],
-    };
-
-    const formats = [
-        'header', 'bold', 'italic', 'underline', 'strike', 'blockquote',
-        'list', 'bullet', 'indent',
-        'link', 'image'
-    ];
-
     const changeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value);
     };
 
-    const changeDescription = (value: string) => {
-        setDescription(value);
+    const changeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setDescription(event.target.value);
     };
 
     const changeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,9 +71,9 @@ const EditPost: React.FC = () => {
 
     return (
         <section className="edit-post">
+            <h2>Edit Post</h2>
             <Header />
             <div className="container">
-                <h2>Edit Post</h2>
                 <form className="form edit-post_form" onSubmit={saveBlog}>
                     <input
                         type="text"
@@ -100,11 +82,11 @@ const EditPost: React.FC = () => {
                         onChange={changeTitle}
                         autoFocus
                     />
-                    <ReactQuill
-                        modules={modules}
-                        formats={formats}
+                    <textarea
+                        placeholder="Description"
                         value={description}
                         onChange={changeDescription}
+                        rows={10}
                     />
                     <input type="file" onChange={changeImage} accept="image/png, image/jpeg" />
                     {imagePreview && (

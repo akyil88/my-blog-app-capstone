@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import './BlogDetail.css';
-import { Blog } from "../BlogCard/Blog.ts";
-import Header from "../Header/Header.tsx";
+import { Blog } from "../BlogCard/Blog";
+import Header from "../Header/Header";
 
 type BlogDetailParams = {
     id: string;
@@ -15,7 +15,6 @@ const BlogDetail: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-
         axios.get(`/api/blog/${id}`)
             .then(response => {
                 setBlog(response.data);
@@ -45,7 +44,7 @@ const BlogDetail: React.FC = () => {
     return (
         <div className="blog-detail">
             <Header />
-            <img src={`data:image/jpeg;base64,${blog.image}`} alt="Blog Image"/>
+            <img src={`data:image/jpeg;base64,${blog.image}`} alt="Blog Image" />
             <h2>{blog.title}</h2>
             <p>{blog.description}</p>
             <div className="button-container">

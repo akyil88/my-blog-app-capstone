@@ -1,67 +1,54 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(6, 6fr);
+    gap: 4rem;
+    align-items: center;
+
+}
+
 .blog-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 350px; /* Feste Breite für jede Blog-Karte */
+    background-color: #fff; /* Weißer Hintergrund für Kontrast */
+    border-radius: 20px; /* Abgerundete Ecken */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Übergänge für Hover */
+    overflow: hidden; /* Verhindert Überlauf */
+    align-items: flex-end;
+
 }
 
-.blog-card h3 {
-    margin-top: 0;
+.blog-card:hover {
+    transform: translateY(-5px); /* Anheben bei Hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Verstärkter Schatten */
 }
 
-.blog-card p {
-    color: #666;
-}
-
-.delete-button, .edit-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #007BFF;
-    margin-left: 5px;
-}
-
-.delete-button:hover {
-    color: #FF0000;
-}
-
-.edit-button:hover {
-    color: #0056b3;
-}
-
-.blog-card form {
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-card form input[type="text"] {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.blog-card form button[type="submit"] {
-    padding: 10px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.blog-card form button[type="submit"]:hover {
-    background-color: #218838;
+.image-preview {
+    width: 100%; /* Volle Breite für das Bild */
+    height: 150px; /* Feste Höhe für das Bild */
+    overflow: hidden;
 }
 
 .image-preview img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0; /* Abgerundete Ecken nur oben */
+}
+
+.blog-content {
+    padding: 0; /* Innenabstand für den Inhalt */
+}
+
+.blog-title {
+    font-size: 1.8em; /* Größere Schrift für den Titel */
+    color: #333;
+    margin-bottom: 20px; /* Abstand unter dem Titel */
+}
+
+.blog-description {
+    font-size: 0.9em; /* Kleinere Schrift für die Beschreibung */
+    color: #666;
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 10px; /* Abstand unter der Beschreibung */
 }

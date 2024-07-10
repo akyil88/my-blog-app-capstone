@@ -1,17 +1,10 @@
-.nav_logo {
-    width: 3rem;
-    display: block;
-}
-
-img {
-    display: block;
-    object-fit: cover;
-    width: 100%;
-}
 
 * {
     margin: 0;
     padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
 
 
 }
@@ -32,12 +25,29 @@ ul {
     list-style: none;
 }
 
+img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+}
+
+section {
+    margin-top: 6rem;
+}
+
+
+.container {
+    margin-inline: auto;
+
+}
+
+
 nav {
     width: 100vw;
-    height: 6rem;
+    height: 5rem;
     display: grid;
-    place-items: flex-start;
-    position: initial;
+    place-items: center;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 1;
@@ -45,13 +55,19 @@ nav {
     backdrop-filter: blur(20px);
 }
 
+
 .nav_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    width: 95%;
+    width: 97%;
 
+}
+
+.nav_logo {
+    width: 3rem;
+    display: block;
 }
 
 .nav_menu {
@@ -59,3 +75,5 @@ nav {
     align-items: center;
     gap: 3rem;
 }
+
+
