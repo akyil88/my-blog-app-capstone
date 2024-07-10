@@ -9,6 +9,7 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ onCreateBlog }) => {
     return (
         <nav>
+         
             <div className="container nav_container">
                 <Link to="/" className="nav_logo">
                     <img src={HomeButtonLogo} alt="Navbar Logo" />

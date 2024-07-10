@@ -1,12 +1,12 @@
 .create-post {
-    padding: 20px;
+    padding: 0;
     background-color: #f9f9f9;
 }
 
 .container {
     margin: 0 auto;
     background-color: #fff;
-    padding: 20px;
+    padding: 0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -20,17 +20,17 @@ h2 {
 .create-post_form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 50px;
 }
 
 .create-post_form input[type="text"],
 .create-post_form textarea,
 .create-post_form input[type="file"] {
-    width: 100%;
-    padding: 10px;
+    width: 240%;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .create-post_form input[type="file"] {

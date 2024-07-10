@@ -1,73 +1,54 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Mindesthöhe des Viewports */
-}
-
 .container {
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    padding: 20px;
-    cursor: default;
+    display: grid;
+    grid-template-columns: repeat(6, 6fr);
+    gap: 4rem;
+    align-items: center;
+
 }
 
 .blog-card {
-    display: flex; /* Flexbox für die Blog-Karte */
-    gap: 20px; /* Abstand zwischen Bild und Inhalt */
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
+    width: 350px; /* Feste Breite für jede Blog-Karte */
+    background-color: #fff; /* Weißer Hintergrund für Kontrast */
+    border-radius: 20px; /* Abgerundete Ecken */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Übergänge für Hover */
+    overflow: hidden; /* Verhindert Überlauf */
+    align-items: flex-end;
 
-@media (max-width: 768px) {
-    .blog-card {
-        flex-direction: column; /* Stapeln auf kleineren Bildschirmen */
-    }
 }
 
 .blog-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px); /* Anheben bei Hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Verstärkter Schatten */
 }
 
 .image-preview {
-    width: 35%; /* Breite des Bildes */
-    max-width: 200px; /* Maximale Breite des Bildes */
-    border-radius: 8px; /* Abgerundete Ecken */
+    width: 100%; /* Volle Breite für das Bild */
+    height: 150px; /* Feste Höhe für das Bild */
     overflow: hidden;
 }
 
 .image-preview img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    display: block;
-    border-radius: 8px; /* Abgerundete Ecken */
+    border-radius: 20px 20px 0 0; /* Abgerundete Ecken nur oben */
 }
 
 .blog-content {
-    flex: 1; /* Nimmt den verfügbaren Platz ein */
+    padding: 0; /* Innenabstand für den Inhalt */
 }
 
 .blog-title {
-    font-size: 1.6em;
+    font-size: 1.8em; /* Größere Schrift für den Titel */
     color: #333;
-    margin: 0;
-    text-decoration: none;
-}
-
-.blog-title a {
-    text-decoration: none;
-    color: inherit;
+    margin-bottom: 20px; /* Abstand unter dem Titel */
 }
 
 .blog-description {
-    font-size: 1em;
+    font-size: 0.9em; /* Kleinere Schrift für die Beschreibung */
     color: #666;
-    margin-top: 10px;
     line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 10px; /* Abstand unter der Beschreibung */
 }
